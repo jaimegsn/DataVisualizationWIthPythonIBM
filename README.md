@@ -97,9 +97,10 @@ ax.set_xlim(0.5, 4.5)
 <br>
 
 <h2>
-Multiples Axes:
+Multiples Plots:
 </h2>
-<p>É possivel uma figura ter mais de um Axis, se você deseja que o Axis esteja em um sistema tabelado de grade é melhor utilizar o plt.subplots(...) para criar uma figura e adicionar os eixos a ela automaticamente</p>
+<p>Muitas vezes queremos plotar vários gráficos dentro da mesma figura, como um exemplo comprar 2 gráficos e outros...
+parapoder visualizar vários gráficos juntos adicionamos subplots</p>
 
 ```python
 fig, axes = plt.subplots(nrows=2, ncols=2) # Criando em Grade 4 Gráficos (2 colunas de grafico com 2 linhas)
@@ -116,9 +117,33 @@ for ax in axes.flat:
 plt.show()
 ```
 
+Ou
+
+```python
+fig = plt.figure() # Cria uma figura
+
+ax0 = fig.add_subplot(1, 2, 1) # add subplot 1 (1 row, 2 columns, first plot)   OBS  (1,2,1)==(121)
+ax1 = fig.add_subplot(1, 2, 2) # add subplot 2 (1 row, 2 columns, second plot). OBS  (1,2,1)==(121)
+
+# Subplot 1: Box plot
+df_CI.plot(kind='box', color='blue', vert=False, figsize=(20, 6), ax=ax0) # add to subplot 1
+ax0.set_title('Box Plots of Immigrants from China and India (1980 - 2013)')
+ax0.set_xlabel('Number of Immigrants')
+ax0.set_ylabel('Countries')
+
+# Subplot 2: Line plot
+df_CI.plot(kind='line', figsize=(20, 6), ax=ax1) # add to subplot 2
+ax1.set_title ('Line Plots of Immigrants from China and India (1980 - 2013)')
+ax1.set_ylabel('Number of Immigrants')
+ax1.set_xlabel('Years')
+
+plt.show()
+```
+
+
 <br>
 
-<h4>OBS:</h4>
+<h4>OBS: podemos adicionar apenas um gráfico usando o subplots</h4>
 
 ```python
 # Em um código acima vimos isso:
@@ -127,7 +152,7 @@ ax = fig.add_subplot(111)
 
 #Você pode reescrever assim:
 fig, ax = plt.subplots()
-# Visto que o subplots sem nenhum argumento cria apenas um subplot
+# Visto que o subplots sem nenhum argumento cria apenas um gráfico
 ```
 
 <br><br>
